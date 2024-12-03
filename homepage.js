@@ -5,7 +5,7 @@ const searchBar = document.getElementById('search-bar')
 
 let allPlants = []
 let currentPage = 1
-const plantsPerPage = 9
+const plantsPerPage = 8
 
 const fetchPlants = async () => {
     const cachedPlants = localStorage.getItem('cachedPlants')
@@ -30,6 +30,11 @@ const fetchPlants = async () => {
         console.error('Error fetching plants:', err)
         return []
     }
+}
+
+const initialize = async () => {
+    allPlants = await fetchPlants()
+    displayPlants(allPlants, currentPage)
 }
 
 function displayPlants(plantList, page = 1) {
@@ -86,9 +91,4 @@ function viewPlantDetails(plantId) {
     console.log(`View details for plant ID: ${plantId}`)
 }
 
-const initialize = async () => {
-    allPlants = await fetchPlants()
-    displayPlants(allPlants, currentPage)
-}
 
-initialize()
