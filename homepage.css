@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
 body {
-  font-family: "Montserrat", sans-serif;
   margin: 0;
   padding: 0;
+  font-family: "Lato", sans-serif;
 }
 
 img {
@@ -24,16 +26,113 @@ nav a {
 }
 
 main {
-  padding: 1.2rem;
   text-align: center;
 }
 
-#plants-container {
+.welcome {
+  position: relative;
+  background-image: url(./hero-img.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  padding: 8rem 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.welcome::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.welcome * {
+  position: relative;
+  z-index: 2; /* Ensures content appears above the overlay */
+}
+
+.welcome h2 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.welcome p {
+  margin: 0;
+}
+
+#explore-btn {
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#explore-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
+  transform: translateY(-2px);
+  background-color: #45a049;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px 15px;
+  font-size: 16px;
+  border: 2px solid #4caf50;
+  border-radius: 25px;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-bar::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.search-bar:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search-bar:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 10px rgba(46, 125, 50, 0.6);
+}
+
+.plants-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1.5rem;
   margin-top: 1.5rem;
   margin: auto;
+  padding-inline: 5rem;
 }
 
 .plant-card {
@@ -70,7 +169,7 @@ main {
   background-color: #45a049;
 }
 
-#pagination-container {
+.pagination-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
