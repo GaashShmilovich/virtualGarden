@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+body {
+    font-family: "Lato", sans-serif;
+    margin: 0;
+    padding: 0;                        
+  }
+
+.plant-details-container{
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr, 1fr, 1fr;
+  grid-template-areas: 
+  ' a a a '
+  ' b b b '
+  ' b b b '
+  ' b b b '
+  ' b b b '
+  ' b b b '
+  ' b b b '
+  ' b b b '
+  ' b b b '
+  ' b b b '
+  ' b b b '
+  ' b b b '
+  ' c c c ';
+}
+
+.header {
+  grid-area: a;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+nav a{
+  margin: 0 1rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+  
+.plant-details{
+  grid-area: b;
+  background-color: #88fc88;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.plant-details .plant-image{
+  width: 30%;
+}
+
+.plant-details .plant-name{
+  width: 30%;
+  font-size: large;
+}
+
+.plant-details .plant-description{
+  width: 30%;
+  height: 80%;
+}
+
+.footer {
+  grid-area: c;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}

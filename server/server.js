@@ -20,6 +20,17 @@ app.get('/api/plants', async (req, res) => {
     }
 })
 
+app.get('/api/plants/:id', async (req, res) => {
+    const { id } = req.params
+    try {
+        const response = await fetch(`https://trefle.io/api/v1/plants/${id}?token=${API_KEY}` )
+        const plantData = await response.json()
+        res.json(plantData)
+    } catch (err) {
+        res.status(500).send({ error: 'Error fetching plant details' })
+    }
+})
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`)
 })
