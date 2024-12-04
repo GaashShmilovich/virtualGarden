@@ -1,7 +1,7 @@
 const API_KEY = 'KoDj13vnuf4T3Npp32-tlbLXl2iCCpQJ-JMcE8ABE3k'
 
-const plantsContainer = document.getElementById('plants-container')
-const searchBar = document.getElementById('search-bar')
+const plantsContainer = document.querySelector('.plants-container')
+const searchBar = document.querySelector('.search-bar')
 
 let allPlants = []
 let currentPage = 1
@@ -15,7 +15,7 @@ const fetchPlants = async () => {
     }
 
     try {
-        const response = await fetch(`https://cors-anywhere.herokuapp.com/trefle.io/api/v1/plants?token=${API_KEY}`)
+        const response = await fetch('http://localhost:3000/api/plants')
         const plantsData = await response.json()
 
         const formattedPlants = plantsData.data.map(plant => ({
@@ -60,7 +60,7 @@ function displayPlants(plantList, page = 1) {
 
 function displayPaginationControls(plantList) {
     const totalPages = Math.ceil(plantList.length / plantsPerPage)
-    const paginationContainer = document.getElementById('pagination-container')
+    const paginationContainer = document.querySelector('.pagination-container')
     paginationContainer.innerHTML = ''
 
     for (let i = 1; i <= totalPages; i++) {
@@ -88,7 +88,7 @@ searchBar.addEventListener('input', (e) => {
 })
 
 function viewPlantDetails(plantId) {
-    console.log(`View details for plant ID: ${plantId}`)
+    window.location.href = `plant-details-page.html?plantId=${plantId}`
 }
 
 
