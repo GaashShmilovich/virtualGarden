@@ -88,7 +88,5 @@ searchBar.addEventListener('input', (e) => {
 })
 
 function viewPlantDetails(plantId) {
-    console.log(`View details for plant ID: ${plantId}`)
+    window.location.href = `plant-details-page.html?plantId=${plantId}`
 }
-
-
