@@ -11,6 +11,8 @@ const fetchPlants = async () => {
     const cachedPlants = localStorage.getItem('cachedPlants')
     if (cachedPlants) {
         console.log('Using cached data')
+        console.log(JSON.parse(cachedPlants));
+        
         return JSON.parse(cachedPlants)
     }
 
@@ -22,6 +24,14 @@ const fetchPlants = async () => {
             name: plant.common_name || 'Unknown',
             image: plant.image_url || 'https://via.placeholder.com/150',
             id: plant.id,
+            // type: plant.type,
+            // watering: plant.watering,
+            // watering_period: plant.watering_period,
+            // fruits: plant.fruits,
+            // edible_fruit: plant.edible_fruit,
+            // maintenance: plant.maintenance,
+            // sunlight: plant.sunlight,
+            // depth_water_requirement: plant.depth_water_requirement,
         }))
 
         localStorage.setItem('cachedPlants', JSON.stringify(formattedPlants))
