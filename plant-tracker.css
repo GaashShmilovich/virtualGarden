@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* border-width: 1px;
+    border-style: solid;
+    border-color: red; */
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+header {
+    background-image: url(./images/55b386ed-390a-479c-ab79-ec36ba41af68-longwood_gardens.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+header h1 {
+    color: white;
+}
+
+header p {
+    color: white;
+}
+
+footer a {
+    color: white;
+}
+
+footer {
+    background-color: #4CAF50;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.plant-card-container {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    background-color: #f4f4f9;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.plant-card {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: #4CAF50;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+}
+
+.plant-card img {
+    width: 100%;
+    height: 60%;
+    border-radius: 8px;
+}
+
+.plant-card h3 {
+    color: white;
+}
+
+.plant-card p {
+    margin: 5px 0;
+    color: white;
+}
+
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination-button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.pagination-button:hover {
+    background-color: #ddd;
+    border-color: #bbb;
+}
+
+.pagination-button.active {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    color: white;
+}
+
+.pagination-button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.pagination-button:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.delete-details {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2%;
+}
+
+.delete {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: red;
+    width: 25%;
+}
+
+.delete:hover {
+    background-color: rgb(90, 10, 10);
+}
+
+.details {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgb(73, 96, 227);
+    width: 25%;
+}
+
+.details:hover {
+    background-color: rgb(32, 50, 147);
+}
