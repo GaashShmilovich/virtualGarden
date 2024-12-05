@@ -65,10 +65,13 @@ main {
 .welcome h2 {
   font-size: 3rem;
   margin: 0;
+  text-shadow: 4px 2px 16px rgba(66, 68, 90, 1);
 }
 
 .welcome p {
   margin: 0;
+  text-shadow: 4px 2px 16px rgba(66, 68, 90, 1);
+  font-size: 1.3rem;
 }
 
 #explore-btn {
@@ -98,6 +101,10 @@ main {
   box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
   transform: translateY(-2px);
   background-color: #45a049;
+}
+
+.search-container {
+  margin-block: 3rem;
 }
 
 .search-bar {

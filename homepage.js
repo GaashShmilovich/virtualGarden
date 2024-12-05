@@ -1,5 +1,3 @@
-const API_KEY = 'KoDj13vnuf4T3Npp32-tlbLXl2iCCpQJ-JMcE8ABE3k'
-
 const plantsContainer = document.querySelector('.plants-container')
 const searchBar = document.querySelector('.search-bar')
 
@@ -18,12 +16,19 @@ const fetchPlants = async () => {
         const response = await fetch('http://localhost:3000/api/plants')
         const plantsData = await response.json()
 
+        // Check if 'data' exists before mapping
+        if (!plantsData.data) {
+            console.error('Invalid API response:', plantsData)
+            return []
+        }
+
         const formattedPlants = plantsData.data.map(plant => ({
             name: plant.common_name || 'Unknown',
-            image: plant.image_url || 'https://via.placeholder.com/150',
+            image: plant.default_image ? plant.default_image.regular_url : 'https://via.placeholder.com/150',
             id: plant.id,
         }))
 
+        // Cache the results
         localStorage.setItem('cachedPlants', JSON.stringify(formattedPlants))
         return formattedPlants
     } catch (err) {
@@ -89,6 +94,10 @@ searchBar.addEventListener('input', (e) => {
 
 function viewPlantDetails(plantId) {
     window.location.href = `plant-details-page.html?plantId=${plantId}`
+    console.log(plantId)
 }
+
+
+
 
 
