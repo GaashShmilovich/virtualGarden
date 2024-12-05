@@ -9,7 +9,9 @@ const port = 3000
 export const API_KEY = 'sk-vyul675055b67af1b7886'
 
 
-app.use(cors())
+app.use(cors({
+    origin: '*',
+}))
 
 app.get('/api/plants', async (req, res) => {
     try {
