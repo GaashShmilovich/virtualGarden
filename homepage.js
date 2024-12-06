@@ -108,7 +108,7 @@ searchBar.addEventListener('input', (e) => {
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-    const imageInput = document.getElementById('plant-ai') // Make sure the ID matches
+    const imageInput = document.getElementById('plant-ai') // The file input element
 
     if (imageInput) {
         imageInput.addEventListener('change', function () {
@@ -116,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (file) {
                 console.log('Selected file:', file)
 
-                // Example: Send the file to the PlantNet API
                 sendToPlantNetAPI(file)
             } else {
                 console.error('No file selected!')
@@ -127,17 +126,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-// Function to send file to PlantNet API
 async function sendToPlantNetAPI(imageFile) {
-    const apiKey = '2b10Jt01kPIoRFvPEQKaIu90hO' // Replace with your PlantNet API key
+    const apiKey = '2b10Jt01kPIoRFvPEQKaIu90hO'
     const formData = new FormData()
-    formData.append('images', imageFile) // Add the image file
-    formData.append('organs', 'auto') // Specify the plant organ (if required)
-    formData.append('api-key', apiKey) // Add the API key
+    formData.append('images', imageFile)
+    formData.append('organs', 'auto')
+
+    const project = 'all'
 
     try {
-        const response = await fetch('https://my.plantnet.org/v2/identify', {
+        const response = await fetch(`https://my-api.plantnet.org/v2/identify/${project}?api-key=${apiKey}`, {
             method: 'POST',
+            headers: {
+                'Origin': 'http://127.0.0.1:5500',
+            },
             body: formData,
         })
 
@@ -152,9 +154,9 @@ async function sendToPlantNetAPI(imageFile) {
     }
 }
 
+
 function viewPlantDetails(plantId) {
     window.location.href = `plant-details-page.html?plantId=${plantId}`
-    console.log(plantId)
 }
 
 initialize()
