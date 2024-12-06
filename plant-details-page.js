@@ -73,12 +73,12 @@ const renderPlantDetails = (details) => {
         ? default_image.regular_url
         : 'https://via.placeholder.com/150'
     document.getElementById('plant-description').innerHTML = `
-        <p><strong>Type:</strong> ${type || 'Unknown'}</p>
-        <p><strong>Watering:</strong> ${watering || 'Unknown'}</p>
-        <p><strong>Sunlight:</strong> ${sunlight || 'Unknown'}</p>
-        <p><strong>Maintenance:</strong> ${maintenance || 'Unknown'}</p>
-        <p><strong>Edible Fruit:</strong> ${edible_fruit ? 'Yes' : 'No'}</p>
-    `
+            <p><strong>Type:</strong> ${type || 'Unknown'}</p>
+            <p><strong>Watering:</strong> ${watering || 'Unknown'}</p>
+            <p><strong>Sunlight:</strong> ${sunlight || 'Unknown'}</p>
+            <p><strong>Maintenance:</strong> ${maintenance || 'Unknown'}</p>
+            <p><strong>Edible Fruit:</strong> ${edible_fruit ? 'Yes' : 'No'}</p>
+        `
 }
 
 document.getElementById('add-to-tracker-link').addEventListener('click', function (e) {
@@ -88,17 +88,14 @@ document.getElementById('add-to-tracker-link').addEventListener('click', functio
         ...window.plantDetails
     }
 
-    console.log('Full plant object:', plantDetails)
+    let existingPlants = JSON.parse(localStorage.getItem('plantDetails')) || []
+    const plantExists = existingPlants.some(plant => plant.id === plantDetails.id)
 
-    localStorage.setItem('plantDetails', JSON.stringify(plantDetails))
+    if (plantExists) {
+        console.log('This plant is already in the tracker.')
+        return
+    }
 
-})
-
-
-
-
-
-// Initialize the page
-document.addEventListener('DOMContentLoaded', () => {
-    displayPlantDetails()
+    existingPlants.push(plantDetails)
+    localStorage.setItem('plantDetails', JSON.stringify(existingPlants))
 })
