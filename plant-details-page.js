@@ -1,45 +1,104 @@
-const plantId = new URLSearchParams(window.location.search).get('plantId')
-export let trackerPlants = []
+function getPlantIdFromUrl() {
+    const params = new URLSearchParams(window.location.search)
+    return params.get('plantId')
+}
 
-const displayPlantDetails = () => {
+const displayPlantDetails = async () => {
+    const plantId = getPlantIdFromUrl() // Extract plantId from the URL
+    if (!plantId) {
+        console.error('Plant ID not found in URL!')
+        document.getElementById('plant-details').innerHTML = '<p>Plant ID is missing!</p>'
+        return
+    }
+
+    const apiKey = 'sk-vyul675055b67af1b7886'
+
     // Retrieve cached plants data from localStorage
-    const cachedPlants = JSON.parse(localStorage.getItem('cachedPlants'))
-    if (!cachedPlants) {
-        console.error('No cached data found!')
-        document.getElementById('plant-details').innerHTML = '<p>Unable to load plant details. Please try again later.</p>'
+    const cachedDetails = JSON.parse(localStorage.getItem('cachedPlantDetails')) || {}
+
+    // Check if the plant details are already cached
+    if (cachedDetails[plantId]) {
+        console.log('Plant details loaded from cache:', cachedDetails[plantId])
+        renderPlantDetails(cachedDetails[plantId])
+        window.plantDetails = cachedDetails[plantId] // Store the full object in window
         return
     }
 
-    // Find the plant by ID
-    const plant = cachedPlants.find((p) => p.id == plantId)
-    if (!plant) {
-        console.error('Plant not found in cache!')
-        document.getElementById('plant-details').innerHTML = '<p>Plant details not found.</p>'
-        return
+    try {
+        // Fetch detailed plant data from API
+        const response = await fetch(`https://perenual.com/api/species/details/${plantId}?key=${apiKey}`)
+        if (!response.ok) {
+            throw new Error(`Failed to fetch plant details: ${response.statusText}`)
+        }
+
+        const plantDetails = await response.json()
+        console.log('API Response:', plantDetails) // Log the entire response
+
+        const details = plantDetails.data || plantDetails // Fallback to root object if data is missing
+        if (!details) {
+            console.error('No plant details found in API response.')
+            document.getElementById('plant-details').innerHTML = '<p>Unable to load plant details from the API.</p>'
+            return
+        }
+
+        // Save the full plant details in the global window object for later use
+        window.plantDetails = details
+
+        // Save plant details in the cache
+        cachedDetails[plantId] = details
+        localStorage.setItem('cachedPlantDetails', JSON.stringify(cachedDetails))
+
+        // Display plant details
+        renderPlantDetails(details)
+    } catch (err) {
+        console.error('Error fetching plant details:', err)
+        document.getElementById('plant-details').innerHTML = '<p>Error loading plant details. Please try again later.</p>'
+    }
+}
+
+// Helper function to render plant details in the HTML
+const renderPlantDetails = (details) => {
+    const {
+        common_name,
+        default_image,
+        type,
+        watering,
+        sunlight,
+        maintenance,
+        edible_fruit,
+    } = details
+
+    document.getElementById('plant-name').textContent = common_name || 'Unknown'
+    document.getElementById('plant-image').src = default_image
+        ? default_image.regular_url
+        : 'https://via.placeholder.com/150'
+    document.getElementById('plant-description').innerHTML = `
+        <p><strong>Type:</strong> ${type || 'Unknown'}</p>
+        <p><strong>Watering:</strong> ${watering || 'Unknown'}</p>
+        <p><strong>Sunlight:</strong> ${sunlight || 'Unknown'}</p>
+        <p><strong>Maintenance:</strong> ${maintenance || 'Unknown'}</p>
+        <p><strong>Edible Fruit:</strong> ${edible_fruit ? 'Yes' : 'No'}</p>
+    `
+}
+
+document.getElementById('add-to-tracker-link').addEventListener('click', function (e) {
+    e.preventDefault()
+
+    const plantDetails = {
+        ...window.plantDetails
     }
 
-    // Display plant details in the HTML
-    document.getElementById('plant-name').textContent = plant.name
-    document.getElementById('plant-image').src = plant.image
-    document.getElementById('plant-description').textContent = `⁠ Its common name is ${plant.name} and it is a.Watering should be ${plant.watering}, in time. ⁠`
+    console.log('Full plant object:', plantDetails)
 
-    return plant
-}
+    localStorage.setItem('plantDetails', JSON.stringify(plantDetails))
 
-if (plantId) {
-    const plant = displayPlantDetails(plantId)
-    displayPlantDetails(plant)
+})
 
-    const addToTrackerLink = document.getElementById('add-to-tracker-link')
-    addToTrackerLink.addEventListener(('click'), addPlantToTracker(plant))
 
-}
-else {
-    console.error('No plant ID provided in the URL.')
-}
 
-function addPlantToTracker(plant) {
-    trackerPlants.push(plant)
-}
-// Load the plant details when the page is ready
-window.onload = displayPlantDetails
+
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', () => {
+    displayPlantDetails()
+})

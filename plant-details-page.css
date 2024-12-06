@@ -1,9 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap");
 
+/* Global Styles */
 body {
   font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #88fc88;
 }
 
 img {
@@ -11,29 +13,20 @@ img {
   display: block;
 }
 
+/* Layout Container */
 .plant-details-container {
-  width: 100vw;
-  height: 100vh;
   display: grid;
-  grid-template-columns: 1fr, 1fr, 1fr;
   grid-template-areas:
-    " a a "
-    " b b "
-    " b b "
-    " b b "
-    " b b "
-    " b b "
-    " b b "
-    " b b "
-    " b b "
-    " b b "
-    " b b "
-    " b b "
-    " c c ";
+    "header"
+    "main"
+    "footer";
+  grid-template-rows: auto 1fr auto;
+  width: 100vw;
+  min-height: 100vh;
 }
 
-.header {
-  grid-area: a;
+/* Header Styles */
+header {
   background-color: #4caf50;
   color: white;
   text-align: center;
@@ -47,43 +40,125 @@ nav a {
   font-size: 1.2em;
 }
 
-.plant-details {
-  grid-area: b;
-  background-color: #88fc88;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+/* Main Plant Details Section */
+.container {
+  display: grid;
+  grid-template-areas:
+    "plant-name"
+    "add-to-tracker"
+    "plant-image"
+    "plant-description";
+  text-align: center;
+  gap: 0.5rem;
+  padding: 1rem;
 }
 
-.plant-details .plant-image {
-  width: 40%;
+#plant-name {
+  grid-area: plant-name;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
-.details {
+.add-to-tracker {
+  grid-area: add-to-tracker;
+  font-size: 1rem;
+  color: white;
+  background-color: #4caf50;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  margin: 0 auto; /* Center the button */
+}
+
+.add-to-tracker:hover {
+  background-color: #388e3c;
+}
+
+.details-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+#plant-image {
+  grid-area: plant-image;
+  max-width: 18rem;
+  margin: 0 auto;
+  border-radius: 8px;
 }
 
-.plant-details .details .plant-name {
-  width: 40%;
-  font-size: large;
+#plant-description {
+  grid-area: plant-description;
+  padding: 1rem;
+  background-color: #fffff5;
+  border: 1px solid black;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.plant-details .details .plant-description {
-  width: 40%;
-  height: 80%;
-}
-
-.plant-details #plant-image {
-  width: 25rem;
-  object-fit: cover;
-}
-
+/* Footer Styles */
 .footer {
-  grid-area: c;
+  grid-area: footer;
   background-color: #4caf50;
   color: white;
   text-align: center;
-  padding: 1rem 0;
+  padding: 1rem;
+}
+
+.footer nav a {
+  margin: 0 1rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+  #plant-name {
+    font-size: 2.5rem;
+  }
+
+  #plant-description {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "plant-name plant-name"
+      "add-to-tracker add-to-tracker"
+      "plant-image plant-description";
+    align-items: start;
+    justify-content: center;
+    gap: 2rem;
+    text-align: left;
+  }
+
+  #plant-name {
+    grid-area: plant-name;
+    font-size: 3rem;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  #plant-image {
+    grid-area: plant-image;
+    max-width: 400px;
+  }
+
+  #plant-description {
+    grid-area: plant-description;
+    max-width: 600px;
+  }
 }

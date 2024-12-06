@@ -8,25 +8,33 @@
   </head>
   <body>
     <div class="plant-details-container">
-      <header class="header">
-        <h1 id="plant-name"></h1>
+      <header>
+        <h1>Virtual Garden Planner</h1>
         <nav>
           <a href="homepage.html">Home</a>
-          <a href="tracker.html">Tracker</a>
+          <a href="plant-tracker.html">Tracker</a>
         </nav>
       </header>
 
-      <main class="plant-details">
-        <img id="plant-image" src="" alt="Plant Image" />
-        <div class="details">
-          <p id="plant-description"></p>
+      <div id="plant-details" class="container">
+        <h1 id="plant-name" class="plant-name">Loading...</h1>
+        <a href="" id="add-to-tracker-link" class="add-to-tracker"
+          >Add to Tracker</a
+        >
+        <img
+          id="plant-image"
+          class="plant-image"
+          src="https://via.placeholder.com/150"
+          alt="Plant Image"
+        />
+        <div id="plant-description" class="plant-description">
+          <p>Loading plant details...</p>
         </div>
-      </main>
+      </div>
 
       <footer class="footer">
         <nav>
-          <a href="./homepage.html #plant-library">Back to Plant Library</a>
-          <a href="./tracker.html" id="add-to-tracker-link">Add to Tracker</a>
+          <a href="./homepage.html">Back to Plant Library</a>
         </nav>
       </footer>
     </div>
