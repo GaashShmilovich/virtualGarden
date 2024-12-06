@@ -15,7 +15,7 @@ app.use(cors({
 
 app.get('/api/plants', async (req, res) => {
     try {
-        const response = await fetch(`https://perenual.com/api/species-list?key=${API_KEY}`)
+        const response = await fetch(`https://perenual.com/api/species-list?key=${API_KEY}&edible=1&limit=100`)
         const plantsData = await response.json()
         res.json(plantsData)
     } catch (err) {
