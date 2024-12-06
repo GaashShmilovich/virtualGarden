@@ -4,7 +4,9 @@ function getPlantIdFromUrl() {
 }
 
 const displayPlantDetails = async () => {
-    const plantId = getPlantIdFromUrl() // Extract plantId from the URL
+    const plantId = getPlantIdFromUrl()
+    console.log('Plant ID from URL:', plantId)  // Check the value of plantId
+
     if (!plantId) {
         console.error('Plant ID not found in URL!')
         document.getElementById('plant-details').innerHTML = '<p>Plant ID is missing!</p>'
@@ -20,7 +22,9 @@ const displayPlantDetails = async () => {
     if (cachedDetails[plantId]) {
         console.log('Plant details loaded from cache:', cachedDetails[plantId])
         renderPlantDetails(cachedDetails[plantId])
-        window.plantDetails = cachedDetails[plantId] // Store the full object in window
+        window.plantDetails = cachedDetails[plantId]
+        console.log('API Response:', plantDetails) // Check the structure of plantDetails
+
         return
     }
 
@@ -58,6 +62,8 @@ const displayPlantDetails = async () => {
 
 // Helper function to render plant details in the HTML
 const renderPlantDetails = (details) => {
+    console.log('Rendering details:', details)  // Log the details object to check its structure
+
     const {
         common_name,
         default_image,
@@ -98,4 +104,9 @@ document.getElementById('add-to-tracker-link').addEventListener('click', functio
 
     existingPlants.push(plantDetails)
     localStorage.setItem('plantDetails', JSON.stringify(existingPlants))
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded event fired')
+    displayPlantDetails()
 })
