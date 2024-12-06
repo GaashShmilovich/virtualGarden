@@ -87,11 +87,10 @@ document.getElementById('add-to-tracker-link').addEventListener('click', functio
     const plantDetails = {
         ...window.plantDetails
     }
-
-    console.log('Full plant object:', plantDetails)
-
-    localStorage.setItem('plantDetails', JSON.stringify(plantDetails))
-
+    const existingPlants = JSON.parse(localStorage.getItem('plantDetails')) || []
+    existingPlants.push(plantDetails)
+    localStorage.setItem('plantDetails', JSON.stringify(existingPlants));
+    
 })
 
 
