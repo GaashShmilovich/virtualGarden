@@ -212,6 +212,42 @@ footer a {
   color: white;
 }
 
+.app-footer {
+  background-color: var(--primary-color);
+  color: #ecf0f1;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+}
+
+/* Footer content container */
+.footer-content {
+  max-width: 100%; /* Full-width on mobile */
+  margin: 0 auto;
+}
+
+/* Footer links */
+.footer-links {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap; /* Wrap links on smaller screens */
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Footer links styling */
+.footer-links a {
+  color: #ecf0f1; /* Light text for links */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px; /* Easy-to-read on small screens */
+}
+
+.footer-links a:hover {
+  color: #1abc9c; /* Accent color on hover */
+  text-decoration: underline;
+}
+
 /* Media queries for larger screens */
 @media (min-width: 768px) {
   nav a {

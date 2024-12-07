@@ -340,8 +340,8 @@ main {
 }
 
 .app-footer {
-  background-color: var(--primary-color); /* Dark background color */
-  color: #ecf0f1; /* Light text color */
+  background-color: var(--primary-color);
+  color: #ecf0f1;
   text-align: center;
   padding: 15px 10px;
   font-size: 14px;
