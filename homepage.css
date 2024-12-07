@@ -301,7 +301,7 @@ main {
 
   .plant-card img {
     min-width: 100%;
-    object-fit: cover`;
+    object-fit: cover;
   }
 
   .plant-card h3 {
