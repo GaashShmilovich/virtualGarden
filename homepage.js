@@ -97,14 +97,18 @@ function displayPaginationControls(plantList) {
 
 searchBar.addEventListener('input', (e) => {
     const searchText = e.target.value.toLowerCase()
-    const searchWords = searchText.split(' ').filter(word => word.trim() !== '') // Split into words
+    const searchWords = searchText.split(' ').filter(word => word.trim() !== '')
 
-    const filteredPlants = allPlants.filter((plant) => {
-        const plantName = plant.name.toLowerCase()
+    let filteredPlants
 
-        // Check if any word in the search is included in the plant's name
-        return searchWords.some(word => plantName.includes(word))
-    })
+    if (searchText === '') {
+        filteredPlants = allPlants
+    } else {
+        filteredPlants = allPlants.filter((plant) => {
+            const plantName = plant.name.toLowerCase()
+            return searchWords.some(word => plantName.includes(word))
+        })
+    }
 
     currentPage = 1
     displayPlants(filteredPlants, currentPage)
