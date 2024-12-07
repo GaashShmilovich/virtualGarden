@@ -363,7 +363,8 @@ main {
   }
 
   .plants-container {
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
     gap: 1.5rem;
     padding-inline: 5rem;
   }
