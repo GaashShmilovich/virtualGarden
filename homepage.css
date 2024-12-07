@@ -1,9 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
+:root {
+  --primary-color: #3a5a40;
+  --secondary-color: #588157;
+  --background-light: #fffdf8;
+  --text-color: #2c2c2c;
+  --accent-color: #a3b18a;
+  --soft-green: #d4e4bc;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Lato", sans-serif;
+  background-color: #fffdf8;
 }
 
 img {
@@ -12,10 +22,11 @@ img {
 }
 
 header {
-  background-color: #4caf50;
+  background-color: var(--primary-color);
   color: white;
   text-align: center;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
@@ -23,6 +34,27 @@ nav a {
   color: white;
   text-decoration: none;
   font-size: 1.2em;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--soft-green);
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--soft-green);
+}
+
+nav a:hover::after {
+  width: 100%;
 }
 
 main {
@@ -36,172 +68,108 @@ main {
   background-position: center;
   background-repeat: no-repeat;
   color: white;
-  padding: 8rem 20px;
+  padding: 4rem 20px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-}
-
-.welcome::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 1;
-}
-
-.welcome * {
-  position: relative;
-  z-index: 2; /* Ensures content appears above the overlay */
+  gap: 1rem;
 }
 
 .welcome h2 {
-  font-size: 3rem;
+  font-size: 2rem;
   margin: 0;
-  text-shadow: 4px 2px 16px rgba(66, 68, 90, 1);
+  text-shadow: 2px 1px 8px rgba(66, 68, 90, 1);
 }
 
 .welcome p {
-  margin: 0;
-  text-shadow: 4px 2px 16px rgba(66, 68, 90, 1);
-  font-size: 1.3rem;
+  font-size: 1rem;
+  text-shadow: 2px 1px 8px rgba(66, 68, 90, 1);
 }
 
 #explore-btn {
-  background-color: #13aa52;
-  border: 1px solid #13aa52;
-  border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
-    sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  outline: none;
-  outline: 0;
-  padding: 10px 25px;
-  text-align: center;
-  transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-#explore-btn:hover {
-  box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
-  transform: translateY(-2px);
-  background-color: #45a049;
+  font-size: 14px;
+  padding: 8px 20px;
 }
 
 .search-container {
-  margin-block: 3rem;
+  margin: 2rem 0;
 }
 
 .search-bar {
-  width: 100%;
-  max-width: 400px;
-  padding: 15px 15px;
-  font-size: 16px;
-  border: 2px solid #4caf50;
-  border-radius: 25px;
-  outline: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.search-bar::placeholder {
-  color: #aaa;
-  font-style: italic;
-}
-
-.search-bar:hover {
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.search-bar:focus {
-  border-color: #2e7d32;
-  box-shadow: 0 0 10px rgba(46, 125, 50, 0.6);
+  width: calc(100% - 40px);
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 2px solid #3a5a40;
+  border-radius: 20px;
 }
 
 .plants-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
   margin: auto;
-  padding-inline: 5rem;
+  padding: 1rem;
 }
 
 .plant-card {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 15px;
+  gap: 0.5rem;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .plant-card img {
-  max-width: 100%;
+  width: 100%;
   height: 15rem;
-  object-fit: cover;
-  border-radius: 8px;
 }
 
 .plant-card h3 {
-  margin: 10px 0;
-  font-size: 1em;
+  font-size: 0.9rem;
 }
 
 .plant-card button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.plant-card button:hover {
-  background-color: #45a049;
+  font-size: 0.9rem;
+  padding: 8px 10px;
 }
 
 .pagination-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  gap: 10px; /* Add spacing between buttons */
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .pagination-button {
+  font-size: 14px;
+  font-weight: bold;
   padding: 10px 15px;
-  margin: 0 5px;
-  font-size: 16px;
   cursor: pointer;
-  border: 1px solid #ccc;
+  border: 2px solid #3a5a40;
   border-radius: 5px;
-  background-color: #f9f9f9;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  background-color: white;
+  color: #3a5a40;
+  transition: all 0.3s ease;
 }
 
 .pagination-button:hover {
-  background-color: #ddd;
-  border-color: #bbb;
+  background-color: #3a5a40;
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .pagination-button.active {
-  background-color: #4caf50;
-  border-color: #4caf50;
+  background-color: #3a5a40;
+  border-color: #3a5a40;
   color: white;
+  font-weight: bold;
 }
 
 .pagination-button:first-child {
@@ -210,4 +178,138 @@ main {
 
 .pagination-button:last-child {
   border-radius: 0 5px 5px 0;
+}
+
+.pagination-button:disabled {
+  background-color: #f0f0f0;
+  color: #ccc;
+  cursor: not-allowed;
+  border-color: #ddd;
+}
+#explore-btn {
+  appearance: none;
+  backface-visibility: hidden;
+  background-color: #fefae0;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: black;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 13px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+#explore-btn:hover {
+  background-color: #ffebba;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: 0.35s;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 6px 12px;
+}
+
+.plant-card button {
+  appearance: none;
+  backface-visibility: hidden;
+  background-color: #588157;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(39, 174, 96, 0.15) 0 4px 9px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 13px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.plant-card button:hover {
+  background-color: #3a5a40;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: 0.35s;
+}
+
+.plant-card button:active {
+  transform: translateY(2px);
+  transition-duration: 0.35s;
+}
+
+.plant-card button:hover {
+  box-shadow: rgba(39, 174, 96, 0.2) 0 6px 12px;
+}
+
+/* Larger screens (Tablet and Desktop) */
+@media (min-width: 768px) {
+  nav a {
+    margin: 0 1rem;
+    font-size: 1.2em;
+  }
+
+  .welcome {
+    padding: 6rem 40px; /* Larger padding for bigger screens */
+    gap: 1.5rem;
+  }
+
+  .welcome h2 {
+    font-size: 3rem;
+  }
+
+  .welcome p {
+    font-size: 1.3rem;
+  }
+
+  .plants-container {
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1.5rem;
+    padding-inline: 5rem;
+  }
+
+  .plant-card img {
+    min-width: 100%;
+    object-fit: cover`;
+  }
+
+  .plant-card h3 {
+    font-size: 1rem;
+  }
+
+  .plant-card button {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
 }
