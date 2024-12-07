@@ -12,6 +12,7 @@ body {
   font-family: "Lato", sans-serif;
   background-color: #f4f4f9;
   margin: 0;
+  color: var(--text-color);
 }
 
 header {
@@ -51,13 +52,14 @@ nav a:hover::after {
 }
 
 footer {
-  background-color: #4caf50;
+  background-color: var(--primary-color);
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  color: white;
 }
 
 footer a {
@@ -66,18 +68,21 @@ footer a {
 }
 
 .plant-card-container {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   gap: 1.5rem;
   padding: 1rem;
+  margin: auto;
 }
 
 .plant-card {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin: auto;
-  background-color: #4caf50;
+  width: 18rem;
+  margin: 0 auto; /* This ensures the card is centered horizontally */
+  background-color: var(--primary-color);
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -105,17 +110,17 @@ footer a {
 
 .watered-button {
   font-size: 1rem;
-  border: 2px solid black;
-  padding: 0.5rem;
+  padding: 0.8rem;
   border-radius: 10px;
-  background-color: #4caf50;
-  margin-bottom: 10px;
+  background-color: #fefae0;
+  border: none;
+  font-weight: 800;
+  transition: 0.3s;
 }
 
 .watered-button:hover {
   cursor: pointer;
-  background-color: rgb(8, 22, 101);
-  color: white;
+  background-color: #fff7b7;
 }
 
 .pagination-container {
@@ -133,22 +138,22 @@ footer a {
   font-weight: bold;
   padding: 10px 15px;
   cursor: pointer;
-  border: 2px solid #4caf50;
+  border: 2px solid var(--primary-color);
   border-radius: 5px;
   background-color: white;
-  color: #4caf50;
+  color: var(--primary-color);
   transition: all 0.3s ease;
 }
 
 .pagination-button:hover {
-  background-color: #4caf50;
+  background-color: var(--primary-color);
   color: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .pagination-button.active {
-  background-color: #4caf50;
-  border-color: #4caf50;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
   color: white;
   font-weight: bold;
 }
@@ -170,8 +175,10 @@ footer a {
 
 .delete-details {
   display: flex;
+  justify-content: space-between;
   gap: 1rem;
   margin: 1rem 0;
+  margin: 0;
 }
 
 .delete,
@@ -180,25 +187,29 @@ footer a {
   border-radius: 10px;
   padding: 0.8rem;
   text-align: center;
-  width: 90%; /* Fit within the card */
-  margin: 0 auto; /* Center the buttons inside the card */
-  box-sizing: border-box; /* Include padding and border in width calculation */
+  width: 90%;
+  box-sizing: border-box;
+  font-weight: 800;
 }
 
 .delete {
   background-color: red;
+  transition: 0.3s;
 }
 
 .delete:hover {
   background-color: rgb(90, 10, 10);
+  color: white;
 }
 
 .details {
   background-color: rgb(73, 96, 227);
+  transition: 0.3s;
 }
 
 .details:hover {
   background-color: rgb(32, 50, 147);
+  color: white;
 }
 
 /* Media queries for larger screens */
@@ -216,6 +227,14 @@ footer a {
   .delete,
   .details {
     width: 40%;
+  }
+}
+
+@media (min-width: 768px) {
+  .plant-card-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    display: grid;
   }
 }
 
