@@ -110,3 +110,14 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded event fired')
     displayPlantDetails()
 })
+
+
+document.getElementById('back-button').addEventListener('click', () => {
+    if (document.referrer) {
+        // Navigate to the previous page if there is a referrer
+        window.history.back()
+    } else {
+        // Fallback: Redirect to a default page
+        window.location.href = 'index.html' // Replace 'index.html' with your desired fallback page
+    }
+})

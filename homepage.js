@@ -68,6 +68,7 @@ function displayPlants(plantList, page = 1) {
             <img src="${plant.image}" alt="${plant.name}">
             <h3>${plant.name}</h3>
             <button onclick="viewPlantDetails(${plant.id})">View Details</button>
+            
         `
         plantsContainer.appendChild(plantCard)
     })
