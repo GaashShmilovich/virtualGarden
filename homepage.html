@@ -25,7 +25,21 @@
       <section class="plant-library main-layout content" id="plant-library">
         <div class="search-container">
           <h2>Plant Library</h2>
-          <input type="file" name="plant-ai" id="plant-ai" accept="image/*" />
+          <div class="upload-container">
+            <label for="plant-ai" class="upload-label">
+              Upload Plant Image
+            </label>
+            <input
+              type="file"
+              name="plant-ai"
+              id="plant-ai"
+              accept="image/*"
+              class="upload-input"
+            />
+            <div id="result-container" class="result-container">
+              <p id="upload-text" class="upload-text">No image selected</p>
+            </div>
+          </div>
           <input
             type="text"
             class="search-bar"

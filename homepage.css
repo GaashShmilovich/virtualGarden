@@ -272,12 +272,81 @@ main {
 .plant-card button:hover {
   box-shadow: rgba(39, 174, 96, 0.2) 0 6px 12px;
 }
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  width: 300px;
+  margin-inline: auto;
+  margin-block-end: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the upload label */
+.upload-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style for the file input button */
+.upload-input {
+  display: none; /* Hide the default file input */
+}
+
+/* Custom style for the file input button */
+.upload-label::after {
+  content: "Choose a file";
+  display: inline-block;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-label:hover::after {
+  background-color: #45a049; /* Hover effect */
+}
+
+/* Styling for the result container */
+.result-container {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e3e3e3;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  display: none; /* Initially hidden until an image is uploaded */
+}
+
+/* Text styling for the result message */
+.upload-text {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Add specific styles for the common name text */
+.result-container p {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
 
 /* Larger screens (Tablet and Desktop) */
 @media (min-width: 768px) {
   nav a {
     margin: 0 1rem;
     font-size: 1.2em;
+  }
+  .upload-container {
+    max-width: 500px;
   }
 
   .welcome {

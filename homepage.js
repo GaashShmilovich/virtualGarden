@@ -104,24 +104,6 @@ searchBar.addEventListener('input', (e) => {
     displayPlants(filteredPlants, currentPage)
 })
 
-document.addEventListener('DOMContentLoaded', () => {
-    const imageInput = document.getElementById('plant-ai')
-
-    if (imageInput) {
-        imageInput.addEventListener('change', function () {
-            const file = this.files[0]
-            if (file) {
-                console.log('Selected file:', file)
-
-                sendToPlantNetAPI(file)
-            } else {
-                console.error('No file selected!')
-            }
-        })
-    } else {
-        console.error('File input element not found!')
-    }
-})
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
@@ -133,6 +115,23 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             block: "start",
         })
     })
+})
+
+const fileInput = document.getElementById('plant-ai')
+const resultContainer = document.getElementById('result-container')
+const uploadText = document.getElementById('upload-text')
+
+fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0]
+
+    if (file) {
+        uploadText.textContent = `Image selected: ${file.name}`
+        resultContainer.style.display = 'block'
+        sendToPlantNetAPI(file)
+    } else {
+        uploadText.textContent = 'No image selected'
+        resultContainer.style.display = 'none'
+    }
 })
 
 async function sendToPlantNetAPI(imageFile) {
@@ -154,7 +153,11 @@ async function sendToPlantNetAPI(imageFile) {
 
         if (response.ok) {
             const result = await response.json()
-            console.log('PlantNet API Response:', result)
+            const plant = result.results[0]
+            const commonName = plant.species.commonNames.length > 0 ? plant.species.commonNames[0] : "Unknown"
+
+            // Update the result container with the common name
+            displayCommonName(commonName)
         } else {
             console.error('Error from PlantNet API:', response.status, response.statusText)
         }
@@ -162,6 +165,15 @@ async function sendToPlantNetAPI(imageFile) {
         console.error('Error sending image to PlantNet API:', err)
     }
 }
+
+function displayCommonName(commonName) {
+    const nameElement = document.createElement('p')
+    nameElement.textContent = `${commonName}`
+
+    resultContainer.innerHTML = ''
+    resultContainer.appendChild(nameElement)
+}
+
 
 
 function viewPlantDetails(plantId) {
