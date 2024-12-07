@@ -97,9 +97,15 @@ function displayPaginationControls(plantList) {
 
 searchBar.addEventListener('input', (e) => {
     const searchText = e.target.value.toLowerCase()
-    const filteredPlants = allPlants.filter((plant) =>
-        plant.name.toLowerCase().includes(searchText)
-    )
+    const searchWords = searchText.split(' ').filter(word => word.trim() !== '') // Split into words
+
+    const filteredPlants = allPlants.filter((plant) => {
+        const plantName = plant.name.toLowerCase()
+
+        // Check if any word in the search is included in the plant's name
+        return searchWords.some(word => plantName.includes(word))
+    })
+
     currentPage = 1
     displayPlants(filteredPlants, currentPage)
 })
@@ -156,7 +162,9 @@ async function sendToPlantNetAPI(imageFile) {
             const plant = result.results[0]
             const commonName = plant.species.commonNames.length > 0 ? plant.species.commonNames[0] : "Unknown"
 
-            // Update the result container with the common name
+
+            searchBar.value = commonName.toLowerCase()
+            searchBar.dispatchEvent(new Event('input'))
             displayCommonName(commonName)
         } else {
             console.error('Error from PlantNet API:', response.status, response.statusText)
