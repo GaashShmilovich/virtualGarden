@@ -22,7 +22,6 @@ const fetchPlants = async () => {
             const response = await fetch(`https://perenual.com/api/species-list?key=${apiKey}&edible=1&page=${page}`)
             const plantsData = await response.json()
 
-            // Check if 'data' exists before mapping
             if (!plantsData.data || plantsData.data.length === 0) {
                 console.log('No more plants to fetch.')
                 break
@@ -40,10 +39,8 @@ const fetchPlants = async () => {
             page++
         }
 
-        // Limit to 100 plants
         allFetchedPlants = allFetchedPlants.slice(0, 50)
 
-        // Cache the results
         localStorage.setItem('cachedPlants', JSON.stringify(allFetchedPlants))
         return allFetchedPlants
     } catch (err) {
@@ -108,11 +105,11 @@ searchBar.addEventListener('input', (e) => {
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-    const imageInput = document.getElementById('plant-ai') // The file input element
+    const imageInput = document.getElementById('plant-ai')
 
     if (imageInput) {
         imageInput.addEventListener('change', function () {
-            const file = this.files[0] // Get the selected file
+            const file = this.files[0]
             if (file) {
                 console.log('Selected file:', file)
 
@@ -124,6 +121,18 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error('File input element not found!')
     }
+})
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+        e.preventDefault()
+
+        const target = document.querySelector(this.getAttribute("href"))
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        })
+    })
 })
 
 async function sendToPlantNetAPI(imageFile) {
